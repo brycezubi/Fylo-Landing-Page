@@ -1,0 +1,512 @@
+@use "variables" as v;
+@use "breakpoints" as b;
+
+body {
+  font-family: v.$font;
+}
+h1,
+a,
+button {
+  font-family: v.$font-head;
+}
+
+.container {
+  width: calc(100% - 10%);
+  margin-inline: auto;
+  max-width: 75rem;
+}
+// Componente
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+
+  .input{
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    
+
+    input {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 0.85rem 1rem;
+  
+      &::placeholder {
+        text-transform: capitalize;
+      }
+    }
+
+    &.error input{
+      border : 2px solid red;
+
+      
+    }
+
+    small{
+      color: red;
+      text-align: left;
+      display: none;
+    }
+
+    &.error small{
+      display: block;
+    }
+  }
+
+
+  button {
+    border-radius: 4px;
+    padding: 0.65rem;
+    color: v.$LightGrayishBlue;
+    background-color: v.$BrightBlue;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      letter-spacing: 2px;
+    }
+  }
+
+  @include b.sm {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+
+    .input{
+
+      width: 70%;
+     
+      button {
+        width: 35%;
+      }
+
+    }
+  }
+}
+
+// HEADER SECTION
+header {
+  .nav {
+    padding-block: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include b.sm {
+      &__img {
+        flex: 1;
+      }
+
+      &__links {
+        width: 30%;
+        gap: 1rem;
+      }
+    }
+
+    &__img {
+      max-width: 7rem;
+    }
+    &__links {
+      display: flex;
+      justify-content: space-around;
+
+      li {
+        list-style: none;
+
+        .link {
+          text-decoration: none;
+          color: v.$DesaturatedBlue;
+          font-weight: 500;
+
+          &:hover {
+            text-decoration: underline;
+            color: v.$VeryDarkBlue;
+          }
+        }
+      }
+    }
+  }
+
+  .hero {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-block-start: 6rem;
+    margin-block-end: 10rem;
+
+    @include b.lg{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      row-gap: 0;
+      margin-block-start: 10rem;
+      margin-block-end: 13rem;
+      column-gap: 5rem;
+      
+      
+      &__img{
+        grid-column: 2/3;
+        grid-row: 1/4;
+        height: 100%;
+      }
+      
+      &__text{
+        grid-column: 1/2;
+        grid-row: 1/3;
+        text-align: left;
+      }
+      
+      .formulario{
+        grid-column: 1/2;
+        grid-row: 3/4;
+        align-self: center;
+      }
+    }
+
+    &__img {
+      width: 100%;
+      object-fit: cover;
+    }
+
+    &__text {
+      h1 {
+        font-size: 1.5rem;
+        color: v.$VeryDarkBlue;
+      }
+      p {
+        color: v.$DesaturatedBlue;
+      }
+
+      @include b.md{
+        max-width: 35rem;
+        margin-inline: auto;
+      }
+
+      @include b.lg{
+        h1{
+          font-size: 2.4rem;
+
+        }
+      }
+    }
+  }
+}
+// END HEADER  SECTION
+
+// MAIN SECTION
+main {
+  background-color: v.$LightGrayishBlue;
+  padding-block-start: 4rem;
+  padding-block-end: 6rem;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: -4%;
+    left: 0;
+    background-image: url(../images/bg-curve-mobile.svg);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: contain;
+    width: 100%;
+    height: 15vh;
+
+    @include b.sm {
+      background-image: url(../images/bg-curve-desktop.svg);
+      height: 20vh;
+    }
+
+    @include b.lg{
+      top: -10%;
+    }
+    @include b.xl{
+      top: -20%;
+    }
+  }
+
+  .productive {
+
+    @include b.lg{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 2rem;
+
+      &__img{
+        align-self: center;
+        grid-column: 2/3;
+        grid-row: 1/3;
+      }
+    }
+
+    @include b.xl{
+      column-gap: 5rem;
+    }
+    &__img {
+      width: 100%;
+    }
+
+    &__content {
+      padding-top: 5rem;
+      h2 {
+        color: v.$VeryDarkBlue;
+        font-size: 1.1rem;
+        text-align: center;
+        padding-bottom: 0.75rem;
+      }
+
+      .paragraph {
+        color: v.$DesaturatedBlue;
+      }
+      button {
+        display: block;
+        text-align: center;
+        margin-inline: auto;
+        margin-block: 2.5rem;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: v.$ModerateCyan;
+        border-bottom: 1px solid;
+        border-color: v.$ModerateCyan;
+        transition: 0.3s;
+        cursor: pointer;
+        &:hover {
+          letter-spacing: 2px;
+        }
+
+        @include b.lg{
+          margin: 2.5rem 0;
+        
+        }
+      }
+
+      @include b.md{
+
+        .paragraph{
+          max-width: 35rem;
+          margin-inline: auto;
+        }
+      }
+
+      @include b.lg{
+
+          padding: 0;
+          grid-column: 1/2;
+          grid-row: 1/3;
+
+          h2{
+            text-align: left;
+          }
+          .paragraph{
+            text-align: left;
+            max-width: 40rem;
+          }
+      }
+      @include b.xl{
+        h2{
+          font-size: 1.8rem;
+        }
+      }
+      
+
+
+    }
+
+    &__card {
+      background-color: white;
+      color: v.$DesaturatedBlue;
+      font-size: 0.85rem;
+      padding: 2rem 1rem;
+      border-radius: 8px;
+      margin-inline: 0.5rem;
+      max-width: 30rem;
+      margin-inline: auto;
+
+      @include b.lg{
+        margin: 0;
+        max-width: 20rem;
+
+      }
+
+      .paragraph {
+        margin: 0;
+        line-height: 1.2rem;
+        margin-top: 0.25rem;
+      }
+
+      .card__info {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding-top: 1rem;
+        h3 {
+          margin: 0;
+          font-size: 0.85rem;
+          color: v.$VeryDarkBlue;
+        }
+        img {
+          width: 32px;
+          border-radius: 50%;
+        }
+        small {
+          color: v.$DesaturatedBlue;
+        }
+
+        
+      }
+    }
+  }
+}
+// END MAIN SECTION
+
+// SUBS SECTION
+.subscription {
+  background-color: v.$DesaturatedBlue;
+  color: white;
+  text-align: center;
+  padding-block: 4.5rem;
+
+  @include b.lg{
+    padding-block: 6rem;
+  }
+
+  
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    h3 {
+      margin: 0;
+    }
+    p {
+      font-size: 0.9rem;
+    }
+
+    @include b.md{
+
+      .texts{
+        max-width: 35rem;
+        margin-inline: auto;
+      }
+      
+    }
+
+    @include b.lg{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-self: center;
+      align-self: center;
+      text-align: left;
+      column-gap: 8rem;
+
+      .formulario{
+        flex-direction: column;
+        button{
+          width: 60%;
+        }
+      }
+    }
+  }
+
+  .formulario {
+    button {
+      font-weight: normal;
+    }
+  }
+}
+// END SUBS SECTION
+
+// FOOTER SECTION
+.footer {
+  padding-block: 4rem;
+  background-color: v.$VeryDarkBlue;
+  color: white;
+
+  &__grid {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+
+    @include b.md {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__data {
+    .data {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+
+      p {
+        margin: 0.35rem;
+      }
+    }
+    @include b.md {
+      grid-column: 1/2;
+      
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+
+    ul {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      li {
+        list-style: none;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    @include b.md {
+      grid-column: 2/3;
+      flex-direction: row;
+      justify-content: space-between;
+
+      ul{
+        margin: 0;
+      }
+    }
+  }
+
+  &__social {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    i {
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid;
+      border-color: #ccc;
+      cursor: pointer;
+
+      &:hover {
+        background-color: red;
+        border-color: red;
+      }
+    }
+  }
+}
+// END FOOTER SECTION
